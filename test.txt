@@ -1,0 +1,2 @@
+- test init git
+- test commit git
