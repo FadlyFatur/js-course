@@ -1,27 +1,34 @@
-const qouteContainer = document.getElementById('qoute-container');
+const qouteContainer = document.getElementById('quote-container');
 const qouteText = document.getElementById('qoute');
 const authorText = document.getElementById('author');
-
+const loader = document.getElementById('loader');
 
 const newQouteBtn = document.getElementById('new-quote').addEventListener('click', newQoute);
-// newQouteBtn.addEventListener('click', newQoute);
-
-
-const twitterBtn = document.getElementById('twitter');//.addEventListener('click', tweetQoute);
-twitterBtn.addEventListener('click', tweetQoute);
-
+const twitterBtn = document.getElementById('twitter').addEventListener('click', tweetQoute);
 
 let apiQoutes = [];
 
+function showLoadingSpinner() {
+    loader.hidden = false;
+    qouteContainer.hidden = true;
+}
+
+function removeLoadingSpinner() {
+    loader.hidden = true;
+    qouteContainer.hidden = false;
+}
+
 // Show new qoute 
 function newQoute() {
+    showLoadingSpinner()
     // pick a random qoute from response 
     const qoute = apiQoutes[Math.floor(Math.random() * apiQoutes.length)];
     // check if author is blank replace with unknown
     !qoute.author ? authorText.textContent = 'Unknown': authorText.textContent = qoute.author;
-    qoute.text.length > 70 ? qouteText.classList.add('long-qoute') : qouteText.classList.remove('long-qoute'); 
+    qoute.text.length > 75 ? qouteText.classList.add('long-qoute') : qouteText.classList.remove('long-qoute'); 
+    //See qoute and hide loader
     qouteText.textContent = qoute.text;
-    
+    removeLoadingSpinner()
 }
 
 // Gets qoutes
@@ -34,7 +41,8 @@ async function getQoutes(){
         newQoute()
     } catch (error) {
         // Catch error 
-
+        console.log(error);
+        alert('Error fetching data!!')
     }
 }
 
@@ -45,7 +53,8 @@ function tweetQoute() {
 }
 
 //on Load
-getQoutes();    
+getQoutes();   
+
 
 
 
