@@ -9,7 +9,7 @@ let isInitialized = true;
 
 // Unsplash API
 let initialCount = 5;
-const apiKey = '2fMQjbrugbRk5FwkeGpZwg46qXDUVstbHf8YVuD3qXs-';
+const apiKey = '2fMQjbrugbRk5FwkeGpZwg46qXDUVstbHf8YVuD3qXs';
 // const topic = 'indonesia'
 let apiUrl = `https://api.unsplash.com/photos/random/?client_id=${apiKey}&count=${initialCount}&orientation=squarish`;
 
